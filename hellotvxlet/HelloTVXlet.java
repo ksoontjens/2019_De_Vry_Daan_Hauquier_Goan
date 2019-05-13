@@ -14,7 +14,11 @@ import org.havi.ui.event.HTextListener;
 
 
 public class HelloTVXlet implements Xlet, HTextListener {
-Image imgs[]=new Image[10];
+Image imgs[]=new Image[4];
+String str[] = new String[]{"school", "film", "natuur", "kleur", "broadcast"};
+int woord = 0;
+String antwoord = str[woord];
+
 int huidig=0;
       HIcon levels=new HIcon(imgs[huidig],170,30,360,360);
       
@@ -25,7 +29,6 @@ int huidig=0;
 
     public void initXlet(XletContext context) {
       HScene scene=HSceneFactory.getInstance().getDefaultHScene();
-      
       
       hst.setBackgroundMode(HVisible.BACKGROUND_FILL);
       hst.setBackground(Color.GRAY);
@@ -38,6 +41,7 @@ int huidig=0;
        imgs[0]=scene.getToolkit().getImage("level1.png");
        imgs[1]=scene.getToolkit().getImage("level2.png");
 
+      
       
       scene.add(levels);
 
@@ -62,12 +66,15 @@ int huidig=0;
     public void textChanged(HTextEvent arg0) {
 
 String guess = hst.getTextContent(HVisible.NORMAL_STATE).toString();
-System.out.println(   guess);
+System.out.println(guess);
 
-if (guess.equals("school")) {
+if (guess.equals(antwoord)) {
     System.out.println("juist");
       levels.setGraphicContent(imgs[1], HVisible.NORMAL_STATE);
+      woord = woord+1;
+      antwoord = str[woord];
 }
+
     }
 
     public void caretMoved(HTextEvent arg0) {
