@@ -15,8 +15,8 @@ import org.havi.ui.event.HTextListener;
 
 
 public class HelloTVXlet implements Xlet, HTextListener {
-Image imgs[]= new Image[6];
-String str[] = new String[]{"school", "film", "natuur", "kleur", "broadcast"};
+Image imgs[]= new Image[7];
+String str[] = new String[]{"school", "film", "natuur", "kleur", "broadcast", ""};
 int woord = 0;
 String antwoord = str[woord];
 
@@ -81,22 +81,22 @@ int huidig=0;
 String guess = hst.getTextContent(HVisible.NORMAL_STATE).toString();
 System.out.println(guess);
 
-if (woord >= 5) {
-        hst.setTextContent("Gewonnen", HVisible.NORMAL_STATE);
-} 
-
-if (guess.equals(antwoord)&& woord < 5) {
+if (guess.equals(antwoord)) {
+    
     hst.setTextContent("", HVisible.NORMAL_STATE);
+    
     System.out.println("juist");
       huidig = huidig+1;
       levels.setGraphicContent(imgs[huidig], HVisible.NORMAL_STATE);
       woord = woord+1;
-      antwoord = str[woord];
-         
+      antwoord = str[woord];       
 }
  
+if (huidig >= 5) {
+    hst.setTextContent("Gewonnen", HVisible.NORMAL_STATE);
+}
 
- }
+}
 
     public void caretMoved(HTextEvent arg0) {
  //       throw new UnsupportedOperationException("Not supported yet.");
